@@ -1,8 +1,12 @@
 pipeline {
     agent any
-    parameters {
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+    triggers {
+        pollSCM('*/1 * * * *')
     }
+    // Leftover from "Hello world"
+    // parameters {
+    //     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+    // }
     stages {
          stage('build') {
             steps {
