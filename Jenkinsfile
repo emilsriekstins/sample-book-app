@@ -66,7 +66,9 @@ def deploy(String environment) {
 def test(String environment) {
     echo "API test execution against node application on ${environment} environment.."
     sh "docker pull emilsriekstins/api-tests"
-    sh "docker run --rm --network=sample-book-app-network -v ${PWD}:/api-tests/mochawesome-report emilsriekstins/api-tests run BOOKS BOOKS_${environment}"
+    // PWD part not working
+    // sh "docker run --rm --network=sample-book-app-network -v ${PWD}:/api-tests/mochawesome-report emilsriekstins/api-tests run BOOKS BOOKS_${environment}"
+    sh "docker run --rm --network=sample-book-app-network emilsriekstins/api-tests run BOOKS BOOKS_${environment}"
     sh "ls"
 }
 
