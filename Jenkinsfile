@@ -2,51 +2,63 @@ pipeline {
     agent any
     parameters {
         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+
     }
     stages {
          stage('build') {
             steps {
-                echo "Building of a node application is starting.."
+                script{
+                    build()
+                }  
             }
         }
          stage('deploy-to-dev') {
             steps {
-                echo "Deployment of node application on DEV environment.."
+                deploy("DEV")
             }
         }
          stage('test-dev') {
             steps {
-                echo "API test execution against node application on DEV environment.."
-                sh 'docker2 run simple-book-app'
+                test("DEV")
             }
         }
         stage('deploy-to-stg') {
             steps {
-                echo "Deployment of node application on STG environment.."
+                deploy("STG")
             }
         }
          stage('test-stg') {
             steps {
-                echo "API test execution against node application on STG environment.."
+                test("STG")
             }
         }
         stage('deploy-to-prd') {
             steps {
-                echo "Deployment of node application on PRD environment.."
+                deploy("PRD")
             }
         }
          stage('test-prd') {
             steps {
-                echo "API test execution against node application on PRD environment.."
+                test("PRD")
             }
         }
     }
 }
 
-// Build of application;
-// deployment in “DEV” env;
-// Test execution against DEV env;
-// deployment in “STG” env;
-// Test execution against STG env;
-// deployment in “PRD” env;
-// Test execution against PRD env.
+def build() {
+    steps {
+        echo "Building of a node application is starting.."
+    }
+}
+
+def deploy(String environment) {
+    steps {
+        echo "API test execution against node application on ${environment} environment.."
+    }
+}
+
+def test(String environment) {
+    steps {
+        echo "API test execution against node application on ${environment} environment.."
+    }
+}
