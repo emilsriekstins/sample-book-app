@@ -44,7 +44,7 @@ pipeline {
 
 def buildApp() {
     echo "Building of a node application is starting.."
-    // docker build -t emilsriekstins/
+    docker build -t emilsriekstins/sample-book-app
 }
 
 def deploy(String environment) {
