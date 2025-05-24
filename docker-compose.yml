@@ -1,0 +1,34 @@
+
+services:
+  sample-book-app-dev:
+    build: .
+    image: emilsriekstins/sample-book-app
+    container_name: sample-book-app-dev
+    ports:
+      - 1010:1050
+    networks:
+      - sample-book-app-network-compose
+  sample-book-app-stg:
+    build: .
+    image: emilsriekstins/sample-book-app
+    container_name: sample-book-app-stg
+    ports:
+      - 2020:1050
+    networks:
+      - sample-book-app-network-compose
+  sample-book-app-prd:
+    build: .
+    image: emilsriekstins/sample-book-app
+    container_name: sample-book-app-prd
+    ports:
+      - 3030:1050
+    networks:
+      - sample-book-app-network-compose
+
+networks:
+  sample-book-app-network-compose:
+    name: sample-book-app-network-compose
+
+# Execution form terminal
+# docker build -t sample-book-app .
+# docker run --rm --name sample-book-app -p 1050:1050 --network=sample-book-app-network sample-book-app
