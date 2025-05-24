@@ -2,7 +2,6 @@ pipeline {
     agent any
     parameters {
         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-
     }
     stages {
          stage('build') {
@@ -44,19 +43,14 @@ pipeline {
 }
 
 def buildApp() {
-    steps {
-        echo "Building of a node application is starting.."
-    }
+    echo "Building of a node application is starting.."
+    // docker build -t emilsriekstins/
 }
 
 def deploy(String environment) {
-    steps {
-        echo "API test execution against node application on ${environment} environment.."
-    }
+    echo "API test execution against node application on ${environment} environment.."
 }
 
 def test(String environment) {
-    steps {
-        echo "API test execution against node application on ${environment} environment.."
-    }
+    echo "API test execution against node application on ${environment} environment.."
 }
