@@ -53,9 +53,10 @@ def buildApp(){
 def deploy(String environment) {
     echo "API test execution against node application on ${environment} environment.."
     sh "docker pull emilsriekstins/sample-book-app" // just to be safe, pull it
-    sh "docker compose stop sample-book-app-${environment}" // To apply new changes, need to stop container if it is running
-    sh "docker compose rm sample-book-app-${environment}"
-    sh "docker compose up -d sample-book-app-${environment}"
+    String lowerCaseEnv = environment.toLowerCase()
+    sh "docker compose stop sample-book-app-${lowerCaseEnv}" // To apply new changes, need to stop container if it is running
+    sh "docker compose rm sample-book-app-${lowerCaseEnv}"
+    sh "docker compose up -d sample-book-app-${lowerCaseEnv}"
 }
 
 def test(String environment) {
