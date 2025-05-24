@@ -63,12 +63,12 @@ def deploy(String environment) {
     sh "docker compose up -d sample-book-app-${lowerCaseEnv}"
 }
 
-def test(String environment) {
-    echo "API test execution against node application on ${environment} environment.."
+def test(String environment){
+    echo "API test executuon against node application on ${environment} environment.."
     sh "docker pull emilsriekstins/api-tests"
-    // PWD part not working
-    // sh "docker run --rm --network=sample-book-app-network -v ${PWD}:/api-tests/mochawesome-report emilsriekstins/api-tests run BOOKS BOOKS_${environment}"
-    sh "docker run --rm --network=sample-book-app-network emilsriekstins/api-tests run BOOKS BOOKS_${environment}"
+    def directory = pwd()
+    sh "echo '${directory}'"
+    sh "docker run --rm --network=sample-book-app-network-compose -v '${directory}':/api-tests/mochawesome-report/ emilsriekstins/api-tests run BOOKS BOOKS_${environment}"
 }
 
 // docker run --rm --network=sample-book-app-network -v $PWD:/api-tests/mochawesome-report api-tests run BOOKS BOOKS_LOCAL
