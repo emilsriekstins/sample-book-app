@@ -68,8 +68,7 @@ def test(String environment) {
     sh "docker pull emilsriekstins/api-tests"
     // PWD part not working
     // sh "docker run --rm --network=sample-book-app-network -v ${PWD}:/api-tests/mochawesome-report emilsriekstins/api-tests run BOOKS BOOKS_${environment}"
-    sh "docker run --rm --network=sample-book-app-network emilsriekstins/api-tests run BOOKS BOOKS_${environment}"
-    sh "ls"
+    // sh "docker run --rm --network=sample-book-app-network emilsriekstins/api-tests run BOOKS BOOKS_${environment}"
 }
 
 // docker run --rm --network=sample-book-app-network -v $PWD:/api-tests/mochawesome-report api-tests run BOOKS BOOKS_LOCAL
