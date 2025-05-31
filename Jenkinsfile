@@ -70,7 +70,7 @@ def test(String environment){
     sh "echo '${directory}'"
     sh "docker run --rm --network=sample-book-app-network-compose -v '${directory}':/api-tests/mochawesome-report/ emilsriekstins/api-tests run BOOKS BOOKS_${environment}"
     // sh "ls"
-    archiveArtifacts allowEmptyArchive: true, artifacts: 'mochawesome.json', followSymlinks: false
+    archiveArtifacts allowEmptyArchive: true, artifacts: 'mochawesome.json', followSymlinks: false // only stores latests one if the name is the same, for prd in this instane
 }
 
 // docker run --rm --network=sample-book-app-network -v $PWD:/api-tests/mochawesome-report api-tests run BOOKS BOOKS_LOCAL
